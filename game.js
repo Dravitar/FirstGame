@@ -8,7 +8,7 @@ const initiate = () => {
 
 const progress = () => {
  const diff = new Date().getTime() - player.lastTick;
- player.number = player.number.plus(diff.div(1000).times(player.upgrade[0]);
+ player.number = player.number.plus(diff.div(1000).times(player.upgrade[0]));
 }
 
 const increaseNumber = () => {
