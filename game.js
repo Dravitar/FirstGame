@@ -1,4 +1,4 @@
-const nD = (num) => { return new Decimal(number) }
+const nD = (num) => { return new Decimal(num) }
 const $ = (id) => { return document.getElementById(id) }
 
 const initiate = () => {
