@@ -166,8 +166,11 @@ const progress = () => {
     else if(player.autoUpgrade[0] > 20){ 
       let increaseAmount = player.autoUpgrade[0]/20;
       increaseAmount = Decimal.times(increaseAmount, Decimal.pow(2,player.upgrade[1]));
-      if(player.upgrade[2]>0) increaseAmount = increaseAmount.times(Decimal.pow(Decimal.times(1.1,player.upgrade[2]),player.autoUpgrade[1]));
+      if(player.upgrade[2]>0) {
+        increaseAmount = increaseAmount.times(Decimal.pow(Decimal.times(1.1,player.upgrade[2]),player.autoUpgrade[1]));
+      }
       increaseNumber(increaseAmount);
+      $("numberPerTick").textContent = increaseAmount;
     }
     player.autoUpgradeCycle[0] = 0;
   }
