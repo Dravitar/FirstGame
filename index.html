@@ -3,7 +3,7 @@
 	<head>
 		<script type="text/javascript" src="break_eternity.js"></script>
 		<script type="text/javascript" src="player.js"></script>
-    		<script type="text/javascript" src="saving.js"></script>
+		<script type="text/javascript" src="saving.js"></script>
 		<script type="text/javascript" src="game.js"></script>
 		<title>1st Game</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
@@ -23,19 +23,22 @@
       <button id="prestigeTabButton" onclick="changeTab('prestige')" style="display:none">
         Prest1ge
       </button>
+			<button id="debugTabButton" onclick="changeTab('debug')">
+				debug
+			</button>
     </div>
     <div id="automators" class="tab">
       <button id="firstAutomator" onclick="purchaseAuto(0,1)" style="display:none">
         Cl1ck the button above <span id="auto1RateSpace">_</span> t1mes a second.
         The next purchase 1mproves to <span id="auto1NextRateSpace">11</span> t1mes a second.
         <br />Active: <input type="checkbox" id="auto1Active"><br />
-	Price: <span id="auto1PriceSpace">1111111111111111111111111</span>
+				Price: <span id="auto1PriceSpace">1111111111111111111111111</span>
       </button>
       <button id="secondAutomator" onclick="purchaseAuto(1,1)" style="display:none">
         Cl1ck the button above <span id="auto2RateSpace">_</span> t1mes a second.
         The next purchase 1mproves to <span id="auto2NextRateSpace">11</span> t1mes a second.
         <br />Active: <input type="checkbox" id="auto2Active"><br />
-	Price: <span id="auto2PriceSpace">1 _ _</span>
+				Price: <span id="auto2PriceSpace">1 _ _</span>
       </button>
     </div>
     <div id="upgrades" class="tab" style="display:none">
@@ -64,6 +67,9 @@
         Price: <span id="prestigeUpgrade1PriceSpace">1</span> Oneness
       </button>
     </div>
-		<span id="numberSpace">_</span>
+		<div id="debug" class="tab" style="display:none">
+			Number per tick: <span id="numberPerTick">0</span>
+		</div>
+	<span id="numberSpace">_</span>
 	</body>
 </html>
