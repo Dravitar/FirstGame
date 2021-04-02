@@ -149,10 +149,10 @@ const checkVis = () => {
   $("auto"+2+"NextRateSpace").textContent = formatOne(player.autoUpgrade[1].plus(1), player.formatVersion);
   $("auto"+2+"PriceSpace").textContent = formatOne(player.autoUpgradePrice[1], player.formatVersion);
   
-  $("upgrade"+1+"PriceSpace").textContent = formatOne(player.upgradePrice[0], player.formatVersion);
+  //$("upgrade"+1+"PriceSpace").textContent = formatOne(player.upgradePrice[0], player.formatVersion);
   $("upgrade"+2+"PriceSpace").textContent = formatOne(player.upgradePrice[1], player.formatVersion);
   $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]),player.formatVersion);
-  $("upgrade"+3+"PriceSpace").textContent = formatOne(player.upgradePrice[2], player.formatVersion);
+  //$("upgrade"+3+"PriceSpace").textContent = formatOne(player.upgradePrice[2], player.formatVersion);
   $("upgrade3Effect").textContent = formatOne(Decimal.pow(Decimal.times(1.5,player.upgrade[2]),player.autoUpgrade[1]),player.formatVersion);
   
 }
@@ -168,7 +168,7 @@ const progress = () => {
           Decimal.times(
             (player.autoUpgrade[0]/20),
             (Decimal.times(Decimal.pow(2,player.upgrade[1]),
-                           (Decimal.pow(Decimal.times(1.5,player.upgrade[2]),player.autoUpgrade[1]))
+                           (Decimal.pow(Decimal.times(1.1,player.upgrade[2]),player.autoUpgrade[1]))
                           )
              )
           )
@@ -176,8 +176,12 @@ const progress = () => {
     }
     player.autoUpgradeCycle[0] = 0;
   }
-  if(player.autoUpgradeCycle[1] >= 1000) {
-    if(player.autoUpgrade[1] > 0) purchaseAuto(0);
+  if(player.autoUpgradeCycle[1] >= 1000*(1/Math.max(player.autoUpgrade[1],1))) {
+    if(player.autoUpgrade[1] > 0 && player.autoUpgrade[1] <= 20) purchaseAuto(0, 1);
+    else if(player.autoUpgrade[1] > 20){
+      let increaseAmount = player.autoUpgrade[1]/20;
+      purchaseAuto(0, increaseAmount);
+    }
     player.autoUpgradeCycle[1] = 0;
   }
 }
@@ -190,33 +194,42 @@ const increaseNumber = (n) => {
   if(player.number.gt(player.maxNum)) player.maxNum = player.number;
 }
 
-const purchaseAuto = (n) => {
-  if(player.number.gte(player.autoUpgradePrice[n])) {
-    player.number = player.number.minus(player.autoUpgradePrice[n]);
-    player.autoUpgrade[n] = player.autoUpgrade[n].plus(1);
-    player.autoUpgradePrice[n] = player.autoUpgradePrice[n].times(player.autoUpgradePriceIncrease[n]);
+const purchaseAuto = (index, amount) => {
+  while(player.number.gte(player.autoUpgradePrice[index]) && amount>0) {
+    player.number = player.number.minus(player.autoUpgradePrice[index]);
+    player.autoUpgrade[index] = player.autoUpgrade[index].plus(1);
+    player.autoUpgradePrice[index] = player.autoUpgradePrice[index].times(player.autoUpgradePriceIncrease[index]);
+    amount--;
   }
   checkVis();
 }
 
 const upgrade = (id) => {
-  if(player.number.gte(player.upgradePrice[id])){
+  if(player.upgradePrice[id].neq(0) && player.number.gte(player.upgradePrice[id])){
     player.number = player.number.minus(player.upgradePrice[id]);
     player.upgrade[id] = player.upgrade[id] + 1;
     player.upgradePrice[id] = player.upgradePrice[id].times(player.upgradePriceIncrease[id]);
+    if(player.upgradePrice[id].eq(0)) {
+      let num = id+1;
+      $("upgrade"+num+"PriceSpace").textContent = "Purchased!"
+      $("upgrade3").style.backgroundColor = "green";
+    }
     switch(id) {
       case 0: 
-        /*if(player.upgrade[0]<3){
-        
+        if(player.upgrade[0]<3){
+          player.formatVersion = player.formatVersion+1;
         }
-        */
-        player.formatVersion = player.formatVersion+1;
+        else {
+          $("upgrade1").style.backgroundColor = "green";
+          player.upgradePrice[0] = nD(0);
+        }
         break;
       case 1:
         $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]),player.formatVersion);
         break;
       case 2:
-        $("upgrade3Effect").textContent = formatOne(Decimal.pow(1.5,player.upgrade[2]),player.formatVersion);
+        $("upgrade3Effect").textContent = formatOne(Decimal.pow(1.1,player.upgrade[2]),player.formatVersion);
+        break;
     }
   }
 }
