@@ -2,13 +2,66 @@
 <html>
 	<head>
 		<script type="text/javascript" src="break_eternity.js"></script>
-		<script type="text/javascript" src="game.js"></script>
 		<script type="text/javascript" src="player.js"></script>
+    <script type="text/javascript" src="saving.js"></script>
+		<script type="text/javascript" src="game.js"></script>
 		<title>1st Game</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
-	<body style="text-align:center" onLoad="initiate()">
-		<span id="numberSpace">1</span>
-    <button id="increaseNumberButton" onclick="increaseNumber()">1ncrease Number</button>
+	<body style="text-align:center" onload="initiate()">
+    <div>
+      <button id="increaseNumberButton" onclick="increaseNumber(1)">1ncrease Number</button>
+      <button id="resetButton" onclick="clearSave()">Clear Save</button>
+    </div>
+    <div>
+      <button id="automatorTabButton" onclick="changeTab('automators')" style="display:none">
+        Automators
+      </button>
+      <button id="upgradeTabButton" onclick="changeTab('upgrades')" style="display:none">
+        Upgrades
+      </button>
+      <button id="prestigeTabButton" onclick="changeTab('prestige')" style="display:none">
+        Prest1ge
+      </button>
+    </div>
+    <div id="automators" class="tab">
+      <button id="firstAutomator" onclick="purchaseAuto(0)" style="display:none">
+        Cl1ck the button above <span id="auto1RateSpace">_</span> t1mes a second.
+        The next purchase 1mproves to <span id="auto1NextRateSpace">11</span> t1mes a second.
+        <br />Price: <span id="auto1PriceSpace">1111111111111111111111111</span>
+      </button>
+      <button id="secondAutomator" onclick="purchaseAuto(1)" style="display:none">
+        Cl1ck the button above <span id="auto2RateSpace">_</span> t1mes a second.
+        The next purchase 1mproves to <span id="auto2NextRateSpace">11</span> t1mes a second.
+        <br />Price: <span id="auto2PriceSpace">1 _ _</span>
+      </button>
+    </div>
+    <div id="upgrades" class="tab" style="display:none">
+      <button id="upgrade1" onclick="upgrade(0)">
+        1mprove number d1splay.<br /><br />
+        Price: <span id="upgrade1PriceSpace">1111111111</span>
+      </button>
+      <button id="upgrade2" onclick="upgrade(1)">
+        Double the number 1ncrease per button cl1ck.<br />
+        Current Effect: x<span id="upgrade2Effect">1</span><br />
+        Price: <span id="upgrade2PriceSpace">1 _ _</span>
+      </button>
+      <button id="upgrade3" onclick="upgrade(2)">
+        Each second Automator purchase 1ncreases number speed by 1.11111<br />
+        Current Effect: x<span id="upgrade3Effect">1.11111</span><br />
+        Price: <span id="upgrade3PriceSpace">1 11111 _ _</span>
+      </button>
+    </div>
+    <div id="prestige" class="tab" style="display:none">
+      <button id="prestigeButton" onclick="prestige()">
+        Prest1ge for <span id="prestigeAmount">_</span> OneNess
+      </button>
+      <button id="prestigeUpgrade1" onclick="prestigeUpgrade(0)">
+        Each f1rst Automator decreases the pr1ce of second Automators by 1.1<br />
+        Current Effect: x<span id="prestigeUpgrade1Effect">1</span>
+        Price: <span id="prestigeUpgrade1PriceSpace">1</span> Oneness
+      </button>
+    </div>
+		<span id="numberSpace">_</span>
 	</body>
 </html>
