@@ -160,8 +160,8 @@ const checkVis = () => {
 
 const progress = () => {
   const diff = new Date().getTime() - player.lastTick;
-  player.autoUpgradeCycle[0] = player.autoUpgradeCycle[0] + 50;
-  player.autoUpgradeCycle[1] = player.autoUpgradeCycle[1] + 50;
+  if($("auto1Active").checked) player.autoUpgradeCycle[0] = player.autoUpgradeCycle[0] + 50;
+  if($("auto2Active").checked) player.autoUpgradeCycle[1] = player.autoUpgradeCycle[1] + 50;
   if(player.autoUpgradeCycle[0] >= (1000*(1/Math.max(player.autoUpgrade[0],1)))) {
     if(player.autoUpgrade[0] > 0 && player.autoUpgrade[0] <= 20) increaseNumber(1);
     else if(player.autoUpgrade[0] > 20){ 
