@@ -164,14 +164,9 @@ const progress = () => {
   if(player.autoUpgradeCycle[0] >= (1000*(1/Math.max(player.autoUpgrade[0],1)))) {
     if(player.autoUpgrade[0] > 0 && player.autoUpgrade[0] <= 20) increaseNumber(1);
     else if(player.autoUpgrade[0] > 20){ 
-      let increaseAmount = 
-          Decimal.times(
-            (player.autoUpgrade[0]/20),
-            (Decimal.times(Decimal.pow(2,player.upgrade[1]),
-                           (Decimal.pow(Decimal.times(1.1,player.upgrade[2]),player.autoUpgrade[1]))
-                          )
-             )
-          )
+      let increaseAmount = player.autoUpgrade[0]/20;
+      increaseAmount = Decimal.times(increaseAmount, Decimal.pow(2,player.upgrade[1]));
+      if(player.upgrade[2]>0) increaseAmount = increaseAmount.times(Decimal.pow(Decimal.times(1.1,player.upgrade[2]),player.autoUpgrade[1]));
       increaseNumber(increaseAmount);
     }
     player.autoUpgradeCycle[0] = 0;
