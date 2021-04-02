@@ -124,6 +124,7 @@ const formatOne = (num, v) => {
 
 const initiate = () => {
   loadGame(localStorage.getItem("firstGameSave"));
+  updateSave();
   checkVis();
   setInterval(progress, 50);
   setInterval(saveGame, 10000);
@@ -151,7 +152,9 @@ const checkVis = () => {
   
   $("upgrade"+1+"PriceSpace").textContent = formatOne(player.upgradePrice[0], player.formatVersion);
   $("upgrade"+2+"PriceSpace").textContent = formatOne(player.upgradePrice[1], player.formatVersion);
+  $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]),player.formatVersion);
   $("upgrade"+3+"PriceSpace").textContent = formatOne(player.upgradePrice[2], player.formatVersion);
+  $("upgrade3Effect").textContent = formatOne(Decimal.pow(Decimal.times(1.5,player.upgrade[2]),player.autoUpgrade[1]),player.formatVersion);
   
 }
 
@@ -166,7 +169,7 @@ const progress = () => {
           Decimal.times(
             (player.autoUpgrade[0]/20),
             (Decimal.times(Decimal.pow(2,player.upgrade[1]),
-                           (Decimal.pow(1.5,player.autoUpgrade[1]))
+                           (Decimal.pow(Decimal.times(1.5,player.upgrade[2]),player.autoUpgrade[1]))
                           )
              )
           )
