@@ -142,19 +142,22 @@ const checkVis = () => {
     $("upgradeTabButton").style.display = "none";
   }
   //player.maxNum.gte(1e16) || player.maxOneness.gte(1) ? $("prestigeTabButton").style.display = "" : $("prestigeTabButton").style.display = "none";
-  $("auto"+1+"RateSpace").textContent = formatOne(player.autoUpgrade[0], player.formatVersion);
-  $("auto"+1+"NextRateSpace").textContent = formatOne(player.autoUpgrade[0].plus(1), player.formatVersion);
-  $("auto"+1+"PriceSpace").textContent = formatOne(player.autoUpgradePrice[0], player.formatVersion);
-  $("auto"+2+"RateSpace").textContent = formatOne(player.autoUpgrade[1], player.formatVersion);
-  $("auto"+2+"NextRateSpace").textContent = formatOne(player.autoUpgrade[1].plus(1), player.formatVersion);
-  $("auto"+2+"PriceSpace").textContent = formatOne(player.autoUpgradePrice[1], player.formatVersion);
-  
+  for(var i=0;i<2;i++){
+    let j = i+1;
+    $("auto"+j+"RateSpace").textContent = formatOne(player.autoUpgrade[i], player.formatVersion);
+    $("auto"+j+"NextRateSpace").textContent = formatOne(player.autoUpgrade[i].plus(1), player.formatVersion);
+    $("auto"+j+"PriceSpace").textContent = formatOne(player.autoUpgradePrice[i], player.formatVersion);
+  }
   if(player.upgrade[0]<3) $("upgrade"+1+"PriceSpace").textContent = formatOne(player.upgradePrice[0], player.formatVersion);
-  $("upgrade"+2+"PriceSpace").textContent = formatOne(player.upgradePrice[1], player.formatVersion);
   $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]),player.formatVersion);
-  //$("upgrade"+3+"PriceSpace").textContent = formatOne(player.upgradePrice[2], player.formatVersion);
   $("upgrade3Effect").textContent = formatOne(Decimal.pow(Decimal.times(1.5,player.upgrade[2]),player.autoUpgrade[1]),player.formatVersion);
-  
+  for(var i=0;i<3;i++){
+    $("upgrade"+j+"PriceSpace").textContent = formatOne(player.upgradePrice[i], player.formatVersion);
+    if(player.upgradePrice[i].eq(0)) {
+      $("upgrade"+j+"PriceSpace").textContent = "Purchased!";
+      $("upgrade"+j).style.backgroundColor = "green";
+    }
+  }  
 }
 
 const progress = () => {
