@@ -141,7 +141,7 @@ const checkVis = () => {
     $("automatorTabButton").style.display = "none";
     $("upgradeTabButton").style.display = "none";
   }
-  //player.maxNum.gte(1e16) || player.maxOneness.gte(1) ? $("prestigeTabButton").style.display = "" : $("prestigeTabButton").style.display = "none";
+  player.maxNum.gte(1e16) || player.maxOneness.gte(1) ? $("prestigeTabButton").style.display = "" : $("prestigeTabButton").style.display = "none";
   for(var i=0;i<2;i++){
     let j = i+1;
     $("auto"+j+"RateSpace").textContent = formatOne(player.autoUpgrade[i], player.formatVersion);
@@ -149,8 +149,9 @@ const checkVis = () => {
     $("auto"+j+"PriceSpace").textContent = formatOne(player.autoUpgradePrice[i], player.formatVersion);
   }
   if(player.upgrade[0]<3) $("upgrade"+1+"PriceSpace").textContent = formatOne(player.upgradePrice[0], player.formatVersion);
-  $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]),player.formatVersion);
-  $("upgrade3Effect").textContent = formatOne(Decimal.pow(Decimal.times(1.5,player.upgrade[2]),player.autoUpgrade[1]),player.formatVersion);
+  $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]), player.formatVersion);
+  $("upgrade3Effect").textContent = formatOne(Decimal.pow(1.3,player.autoUpgrade[1]), player.formatVersion);
+  $("upgrade4Effect").textContent = formatOne(Decimal.pow(1.1,player.autoUpgrade[0]), player.formatVersion);
   for(var i=0;i<3;i++){
     $("upgrade"+j+"PriceSpace").textContent = formatOne(player.upgradePrice[i], player.formatVersion);
     if(player.upgradePrice[i].eq(0)) {
@@ -217,7 +218,7 @@ const upgrade = (id) => {
     }
     switch(id) {
       case 0: 
-        if(player.upgrade[0]<3){
+        if(player.upgrade[0]<4){
           player.formatVersion = player.formatVersion+1;
         }
         else {
@@ -263,6 +264,7 @@ const clearSave = () => {
     localStorage.removeItem("firstGameSave");
     player = getDefaultPlayer();
     saveGame();
+    changeTab("automators");
     checkVis();
   }
 }
