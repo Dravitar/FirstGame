@@ -124,7 +124,7 @@ const formatOne = (num, v) => {
 
 const initiate = () => {
   loadGame(localStorage.getItem("firstGameSave"));
-  setInterval(checkVis, 100);
+  //setInterval(checkVis, 100);
   setInterval(progress, 50);
   setInterval(saveGame, 10000);
 }
