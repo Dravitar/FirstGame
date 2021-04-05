@@ -152,7 +152,7 @@ const checkVis = () => {
   $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]), player.formatVersion);
   $("upgrade3Effect").textContent = formatOne(Decimal.pow(1.3,player.autoUpgrade[1]), player.formatVersion);
   $("upgrade4Effect").textContent = formatOne(Decimal.pow(1.1,player.autoUpgrade[1]), player.formatVersion);
-  for(var i=0;i<3;i++){
+  for(var i=0;i<4;i++){
     var j = i+1;
     if(player.upgradePrice[i].eq(0)) {
       $("upgrade"+j+"PriceSpace").textContent = "Purchased!";
