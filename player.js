@@ -10,7 +10,7 @@ const getDefaultPlayer = () => {
    autoUpgradePriceIncrease: [nD(1.1),nD(2),],
    autoUpgradeActive: [true,true,],
    upgrade: [0,0,0,0],
-   upgradePrice: [nD(10),nD(100),nD(1500),nD(1e16)],
+   upgradePrice: [nD(10),nD(100),nD(1500),nD(1e9)],
    upgradePriceIncrease: [nD(100),nD(10),nD(0),nD(0),],
    oneness: nD(0),
    maxOneness: nD(0),
