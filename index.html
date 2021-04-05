@@ -32,13 +32,13 @@
         Cl1ck the button above <span id="auto1RateSpace">_</span> t1mes a second.
         The next purchase 1mproves to <span id="auto1NextRateSpace">11</span> t1mes a second.
         <br />Active: <input type="checkbox" id="auto1Active"><br />
-				Price: <span id="auto1PriceSpace">1111111111111111111111111</span>
+				Pr1ce: <span id="auto1PriceSpace">1111111111111111111111111</span>
       </button>
       <button id="secondAutomator" onclick="purchaseAuto(1,1)" style="display:none">
         Cl1ck the button above <span id="auto2RateSpace">_</span> t1mes a second.
         The next purchase 1mproves to <span id="auto2NextRateSpace">11</span> t1mes a second.
         <br />Active: <input type="checkbox" id="auto2Active"><br />
-				Price: <span id="auto2PriceSpace">1 _ _</span>
+				Pr1ce: <span id="auto2PriceSpace">1 _ _</span>
       </button>
     </div>
     <div id="upgrades" class="tab" style="display:none">
@@ -49,13 +49,18 @@
       <button id="upgrade2" onclick="upgrade(1)">
         Double the number 1ncrease per button cl1ck.<br />
         Current Effect: x<span id="upgrade2Effect">1</span><br />
-        Price: <span id="upgrade2PriceSpace">1 _ _</span>
+        Pr1ce: <span id="upgrade2PriceSpace">1 _ _</span>
       </button>
       <button id="upgrade3" onclick="upgrade(2)">
-        Each second Automator purchase 1ncreases number speed by 1.11111<br />
-        Current Effect: x<span id="upgrade3Effect">1.11111</span><br />
-        Price: <span id="upgrade3PriceSpace">1 11111 _ _</span>
+        Each second Automator purchase 1ncreases number speed by 1.111<br />
+        Current Effect: x<span id="upgrade3Effect">1.111</span><br />
+        Pr1ce: <span id="upgrade3PriceSpace">1 11111 _ _</span>
       </button>
+	    <button id="upgrade4" onclick="upgrade(3)">
+				Each second Automator purchase decreases the pr1ce of f1rst Automators by 1.1<br />
+				Current Effect: x<span id="upgrade4Effect">1.1<span><br />
+				Pr1ce: <span id="upgrade4PriceSpace">1</span>
+			</button>
     </div>
     <div id="prestige" class="tab" style="display:none">
       <button id="prestigeButton" onclick="prestige()">
