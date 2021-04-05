@@ -160,9 +160,10 @@ const checkVis = () => {
     }
     else {
       $("upgrade"+j+"PriceSpace").textContent = formatOne(player.upgradePrice[i], player.formatVersion);
-      $("upgrade"+j).style.backgroundColor = "white";
+      $("upgrade"+j).style.backgroundColor = "";
     }
-  }  
+  }
+  $("onenessAmount").textContent = formatOne(player.oneness, player.formatVersion);
 }
 
 const progress = () => {
@@ -178,7 +179,7 @@ const progress = () => {
         increaseAmount = increaseAmount.times(Decimal.pow(Decimal.times(1.3,player.upgrade[2]),player.autoUpgrade[1]));
       }
       increaseNumber(increaseAmount);
-      $("numberPerTick").textContent = increaseAmount;
+      $("numberPerTick").textContent = increaseAmount.times(20);
     }
     player.autoUpgradeCycle[0] = 0;
   }
@@ -204,7 +205,9 @@ const purchaseAuto = (index, amount) => {
   while(player.number.gte(player.autoUpgradePrice[index]) && amount>0) {
     player.number = player.number.minus(player.autoUpgradePrice[index]);
     player.autoUpgrade[index] = player.autoUpgrade[index].plus(1);
-    player.autoUpgradePrice[index] = player.autoUpgradePrice[index].times(player.autoUpgradePriceIncrease[index]);
+    let increase = player.autoUpgradePriceIncrease[index];
+    if(index == 0 && player.upgrade[3]>0) increase = increase.div(1.1);
+    player.autoUpgradePrice[index] = player.autoUpgradePrice[index].times(increase);
     amount--;
   }
   checkVis();
@@ -236,6 +239,11 @@ const upgrade = (id) => {
       case 2:
         $("upgrade3Effect").textContent = formatOne(Decimal.pow(1.1,player.upgrade[2]),player.formatVersion);
         break;
+      case 3:
+        let effect = Decimal.pow(1.1,player.autoUpgrade[0]);
+        $("upgrade4Effect").textContent = formatOne(effect,player.formatVersion);
+        player.autoUpgradePrice[0] = player.autoUpgradePrice[0].div(effect);
+        break;
     }
   }
 }
@@ -249,7 +257,9 @@ const prestige = () => {
   let x = getPrestigeAmount();
   if(x.gt(0)) {
     player = getDefaultPlayer();
+    $("onenessSpace").style.display = "";
     player.oneness = player.oneness.plus(x);
+    $("onenessAmount").textContent = formatOne(player.oneness, player.formatVersion);
     checkVis();
   }
 }
