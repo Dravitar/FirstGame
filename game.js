@@ -158,11 +158,11 @@ const checkVis = () => {
   console.log("fourthTest");
   for(var i=0;i<4;i++){
     var j = i+1;
+    console.log("fifthTest "+j);
     if(player.upgradePrice[i].eq(0)) {
       $("upgrade"+j+"PriceSpace").textContent = "Purchased!";
       $("upgrade"+j).style.backgroundColor = "green";
     }
-    console.log("fifthTest "+j);
     else {
       $("upgrade"+j+"PriceSpace").textContent = formatOne(player.upgradePrice[i], player.formatVersion);
       $("upgrade"+j).style.backgroundColor = "";
