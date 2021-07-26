@@ -141,34 +141,34 @@ const checkVis = () => {
     $("automatorTabButton").style.display = "none";
     $("upgradeTabButton").style.display = "none";
   }
-  console.log("firstTest");
   player.maxNum.gte(1e16) || player.maxOneness.gte(1) ? $("prestigeTabButton").style.display = "" : $("prestigeTabButton").style.display = "none";
-  console.log("secondTest");
   for(var i=0;i<2;i++){
     let j = i+1;
     $("auto"+j+"RateSpace").textContent = formatOne(player.autoUpgrade[i], player.formatVersion);
     $("auto"+j+"NextRateSpace").textContent = formatOne(player.autoUpgrade[i].plus(1), player.formatVersion);
     $("auto"+j+"PriceSpace").textContent = formatOne(player.autoUpgradePrice[i], player.formatVersion);
   }
-  console.log("thirdTest");
   if(player.upgrade[0]<3) $("upgrade"+1+"PriceSpace").textContent = formatOne(player.upgradePrice[0], player.formatVersion);
   $("upgrade2Effect").textContent = formatOne(Decimal.pow(2,player.upgrade[1]), player.formatVersion);
   $("upgrade3Effect").textContent = formatOne(Decimal.pow(1.3,player.autoUpgrade[1]), player.formatVersion);
   $("upgrade4Effect").textContent = formatOne(Decimal.pow(1.1,player.autoUpgrade[1]), player.formatVersion);
-  console.log("fourthTest");
   for(var i=0;i<4;i++){
     var j = i+1;
-    console.log("fifthTest "+j);
     if(player.upgradePrice[i].eq(0)) {
+      console.log("check1")
       $("upgrade"+j+"PriceSpace").textContent = "Purchased!";
+      console.log("check2")
       $("upgrade"+j).style.backgroundColor = "green";
+      console.log("check3")
     }
     else {
+      console.log("check4")
       $("upgrade"+j+"PriceSpace").textContent = formatOne(player.upgradePrice[i], player.formatVersion);
+      console.log("check5")
       $("upgrade"+j).style.backgroundColor = "";
+      console.log("check6")
     }
   }
-  console.log("sixthTest");
   $("onenessAmount").textContent = formatOne(player.oneness, player.formatVersion);
 }
 
