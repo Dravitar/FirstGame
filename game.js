@@ -163,7 +163,7 @@ const checkVis = () => {
     }
     else {
       console.log("check4")
-      $("upgrade"+j+"PriceSpace").textContent = formatOne(player.upgradePrice[i], player.formatVersion);
+      $("upgrade"+j+"PriceSpace").textContent = formatOne(player.upgradePrice[i], Math.max(2, player.formatVersion));
       console.log("check5")
       $("upgrade"+j).style.backgroundColor = "";
       console.log("check6")
